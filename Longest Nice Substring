@@ -1,0 +1,30 @@
+### Aim: To find and return the longest substring of a given string that is "nice," meaning every letter in the substring appears in both uppercase and lowercase.
+
+### Objective:
+To understand and implement substring manipulation techniques.
+To efficiently check the conditions for a "nice" substring.
+To optimize the approach for finding the longest valid substring while maintaining the earliest occurrence.
+To enhance problem-solving skills in string processing and substring generation.
+
+### Code:
+bool check(string s){
+        for(int i=0;i<s.size();i++) {
+            char c = s[i];
+            if(c<=90) c += 32;
+            else c -= 32;
+            if(s.find(c)==string::npos) return false;
+        }
+        return true;
+    }
+    string longestNiceSubstring(string s) {
+        string ans = "";
+        for(int i=0;i<s.size();i++){
+            string res = "";
+            res += s[i];
+            for(int j = i+1;j<s.size();j++){
+                res += s[j];
+                if(check(res) and res.size()>ans.size()) ans = res;
+            }
+        }
+        return ans;
+    }
